@@ -1,14 +1,8 @@
 {
-    "name": "MariaDB Environment",
-    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-    "features": {
-        "ghcr.io/devcontainers/features/sshd:1": {},
-        "ghcr.io/devcontainers/features/common-utils:2": {
-            "installZsh": true
-        },
-        "ghcr.io/devcontainers/features/mariadb:1": {} 
+    "name": "MariaDB Managed Environment",
+    "build": {
+        "dockerfile": "Dockerfile"
     },
-    "postCreateCommand": "sudo service mariadb start && sudo mariadb -e \"CREATE DATABASE IF NOT EXISTS dev_db;\"",
     "customizations": {
         "vscode": {
             "extensions": [
@@ -16,5 +10,7 @@
                 "mtxr.sqltools-driver-mysql"
             ]
         }
-    }
+    },
+    "remoteUser": "vscode",
+    "postCreateCommand": "sudo service mariadb start && sudo mariadb -e \"CREATE DATABASE IF NOT EXISTS dev_db;\""
 }
